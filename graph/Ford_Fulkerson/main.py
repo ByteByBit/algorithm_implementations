@@ -5,8 +5,7 @@ class Edge:
     '''
 
     def __init__(
-        self, start:str = '', end:str = '', capacity:int = 0, 
-        source:bool = False, sink:bool = False):
+        self, start:str = '', end:str = '', capacity:int = 0):
         '''       
         Parameters
         ----------
