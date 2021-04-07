@@ -11,7 +11,7 @@ from merge import merge_sort
 from pigeonhole import pigeonhole_sort
 from quick import quick_sort
 from selection import selection_sort
-
+from strand import strand_sort
 
 def print_result(a_name: str, original_arr: list, sorted_arr: list, elapsed: int):
 
@@ -62,6 +62,7 @@ if __name__ == '__main__':
     '''
     Counting sort.
     '''
+    # Counting sort is mostly used for 1 digit integers.
     arr1 = [9, 0, 0, 2, 1, 4, 4, 7, 9, 6, 7, 8, 5]
     timer_f(counting_sort, a=arr1[:])
 
@@ -99,3 +100,8 @@ if __name__ == '__main__':
     Selection sort.
     '''
     timer_f(selection_sort, a=arr[:])
+
+    '''
+    Strand sort.
+    '''
+    timer_f(strand_sort, a=arr[:])
