@@ -49,6 +49,7 @@ if __name__ == '__main__':
 
     arr = list(range(60))
     random.shuffle(arr)
+    
     # Bucket sort is mostly used for list of floats.
     bucket_list = [0.222, 0.333, 0.555, 0.444, 0.111, 0.232]
     # Counting sort is mostly used for 1 digit integers.
