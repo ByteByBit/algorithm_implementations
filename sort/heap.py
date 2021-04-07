@@ -5,7 +5,7 @@ def heapify(a: list, n: int, i: int) -> list:
     Parameters
     ----------
     a : list
-        Set of numbers to search in.
+        The list to sort.
     n : int 
         Lenght of the list.
     i : int
@@ -46,7 +46,7 @@ def max_heap(a: list, i: int, n:  int) -> list:
     Parameters
     ----------
     a : list
-        Set of numbers to search in.
+        The list to sort.
     i : int
         Iteration count.
     n : int  
@@ -73,7 +73,7 @@ def heap_sort(a: list) -> list:
     Parameters
     ----------
     a : list
-        Set of numbers to search in.
+        The list to sort.
 
     Returns
     -------

@@ -5,7 +5,7 @@ def bubble_sort(a: list) -> list:
     Parameters
     ----------
     a : list
-        Set of numbers to search in.
+        The list to sort.
 
     Returns
     -------
