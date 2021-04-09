@@ -122,7 +122,7 @@ if __name__ == '__main__':
         # bogo_sort,
         brick_sort,
         bubble_sort,
-        # bucket_sort,
+        #bucket_sort,
         coctail_sort,
         comb_sort,
         # counting_sort,
