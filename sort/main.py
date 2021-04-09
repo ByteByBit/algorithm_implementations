@@ -1,5 +1,10 @@
 import random
 from timeit import default_timer as timer
+import matplotlib.pyplot as plt
+import numpy as np
+from threading import Thread
+import queue
+import time
 
 from bogo import bogo_sort
 from brick import brick_sort
@@ -20,127 +25,126 @@ from strand import strand_sort
 from tim import tim_sort
 
 
-def print_result(a_name: str, sorted_arr: list, elapsed: int):
+def timer_f(func, a:list) -> None:
+    '''
+    Measure the time for the execution of a function. 
+    
+    Parameters
+    ----------
+    func : function
+        The sorting function.
+    a : list
+        A list to sort.
+    '''
 
-    txt = '{algo_name}:\nSorted list: {s_list}\nTime (s): {elapsed}.\n' \
-        '##########################################################################################' \
-        .format(
-                algo_name = a_name.capitalize(),
-                s_list = ','.join(str(e) for e in sorted_arr),
-                elapsed = elapsed)
-
-    print(txt)
-
-
-def timer_f(func, a:list):
     start = timer()
 
     res_tmp = func(a)
 
     end = timer()
+    res = {func.__name__: end - start}
 
-    time_elapsed = 1000 * (end - start)
+    q.put(res)
 
-    print_result(a_name=func.__name__, sorted_arr=res_tmp, elapsed=time_elapsed)
+
+def thread_manager(sorting_funcs: list) -> None:
+    ''' 
+    Function to insert all sorting function into a thread.
+
+    Parameters
+    ----------
+    sorting_funcs : list
+        The sorting functions.
+    '''
+
+    for f in sorting_funcs:
+
+        t = Thread(target=timer_f, args=(f, arr[:], ))
+        t.daemon = True
+        t.start()
+
+
+def queue_manager(fun_length: int) -> dict:
+    ''' 
+    Function to retrieve data from qs, filled by the threads.
+
+    Parameters
+    ----------
+    fun_length : int
+        Length of the sorting functions.
+    '''
+
+    results = {}
+    count = 0
+    while True:
+        res = q.get()
+        results.update(res)
+
+        if count == fun_length:
+            break
+        
+        count += 1
+
+    return results
+
+
+def chart(data: dict) -> None:
+    ''' 
+    Initialize and display matplotlib chart.
+
+    Parameters
+    ----------
+    data : int
+        Ex. { function_name: 0.003 }.
+
+    '''
+
+    plt.style.use('ggplot')
+    keys = results.keys()
+    vals = results.values()
+    x_pos = [i for i, _ in enumerate(keys)]
+
+    plt.bar(x_pos, vals)
+
+    plt.xticks(x_pos, keys)
+    plt.title('Sorting algorithms time complexity (s)')
+    plt.show()
 
 
 if __name__ == '__main__':
 
 
-    arr = list(range(60))
-    random.shuffle(arr)
-    
-    # Bucket sort is mostly used for list of floats.
-    bucket_list = [0.222, 0.333, 0.555, 0.444, 0.111, 0.232]
-    # Counting sort is mostly used for 1 digit integers.
-    counting_list = [9, 0, 0, 2, 1, 4, 4, 7, 9, 6, 7, 8, 5]
+    # Generate a random list
+    arr = random.sample(range(0, 3000), 100)
 
-    print('Original list:\n {}'.format(','.join(str(e) for e in arr)))
-    print('Bucket list:\n {}'.format(','.join(str(e) for e in bucket_list)))
-    print('Counting list:\n {}'.format(','.join(str(e) for e in counting_list)))
-    '''
-    Bogo sort.
-    '''
-    # Limit the list to avoid recursion limit.
-    timer_f(bogo_sort, a=arr[:5])
+    # Algorithm list -> see readme.
+    sorting_funcs = [
+        # bogo_sort,
+        brick_sort,
+        bubble_sort,
+        # bucket_sort,
+        coctail_sort,
+        comb_sort,
+        # counting_sort,
+        cycle_sort,
+        heap_sort,
+        insertion_sort,
+        merge_sort,
+        pigeonhole_sort,
+        quick_sort,
+        selection_sort,
+        strand_sort,
+        tim_sort
+    ]
 
-    '''
-    Brick sort.
-    '''
-    timer_f(brick_sort, a=arr[:])
+    # Queue -> see readme.
+    q = queue.Queue()
 
-    '''
-    Bubble sort.
-    '''
-    timer_f(bubble_sort, a=arr[:])
+    # Send all function to a Thread.
+    thread_manager(sorting_funcs=sorting_funcs)
 
-    '''
-    Bucket sort.
-    '''
-    timer_f(bucket_sort, a=bucket_list[:])
+    # Get results from the qs.
+    results = queue_manager(fun_length=len(sorting_funcs)-1)
 
-    '''
-    Coctail sort.
-    '''
-    timer_f(coctail_sort, a=arr[:])
-
-    '''
-    Comb sort.
-    '''
-    timer_f(comb_sort, a=arr[:])
-
-    '''
-    Counting sort.
-    '''
-
-    timer_f(counting_sort, a=counting_list[:])
-
-    '''
-    Cycle sort.
-    '''
-    timer_f(cycle_sort, a=arr[:])
-
-    '''
-    Gnome sort.
-    '''
-    timer_f(gnome_sort, a=arr[:])
-
-    '''
-    Heap sort.
-    '''
-    timer_f(heap_sort, a=arr[:])
-
-    '''
-    Insertion sort.
-    '''
-    timer_f(insertion_sort, a=arr[:])
-
-    '''
-    Merge sort.
-    '''
-    timer_f(merge_sort, a=arr[:])
-
-    '''
-    Pigeonhole sort.
-    '''
-    timer_f(pigeonhole_sort, a=arr[:])
-
-    '''
-    Quick sort.
-    '''
-    timer_f(quick_sort, a=arr[:])
-
-    '''
-    Selection sort.
-    '''
-    timer_f(selection_sort, a=arr[:])
-
-    '''
-    Strand sort.
-    '''
-    timer_f(strand_sort, a=arr[:])
-
-    '''
-    Tim sort.
-    '''
-    timer_f(tim_sort, a=arr[:])
+    # Init and show chart.
+    chart(data=results)

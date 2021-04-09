@@ -17,17 +17,15 @@ def bogo_sort(a: list) -> list:
 
     """
 
-    if is_sorted(a) ==  False:
-
-        random.shuffle(a) # Shuffle the list.
-        return bogo_sort(a) # Recursion.
-
+    while not is_sorted(a):
+        random.shuffle(a)
+    
     return a
 
 
 def is_sorted(a: list) -> bool:
     """ 
-    Iterate over the list to see if it already sorted.
+    Iterate over the list to see if it is already sorted.
 
     Parameters
     ----------
