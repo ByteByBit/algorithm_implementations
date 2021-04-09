@@ -21,7 +21,7 @@
     <li>Tim</li>
 </ul>
 <h3>Threads and Queues:</h3>
-<p>Each sorting function is sent to a thread, this way there is no conflict between them, when paralel run occurs.
+<p>Each sorting function is sent to a thread, this way there is no conflict between them, when parallel run occurs.
 Each thread puts the result into a Queue object.</p>
 <h3>Note:</h3>
 <p> The <u>Bogo sort</u> algorithm is excluded from the chart, as it generates completely random results, and
