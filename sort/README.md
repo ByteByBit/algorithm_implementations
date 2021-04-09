@@ -29,4 +29,4 @@ usually takes too long to finish.<br>
 The <u>Bucket sort</u> algorithm is excluded from the chart, as it mainly used for lists of floats.<br>
 The <u>Counting sort</u> algorithm is excluded from the chart, as it mainly used for lists of single digit integers.</p> 
 
-![plot](.chart.png)
+![plot](chart.png)
