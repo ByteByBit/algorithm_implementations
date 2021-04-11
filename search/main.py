@@ -106,7 +106,7 @@ def chart(data: dict) -> None:
 if __name__ == '__main__':
     
     # Generate a random list
-    arr = random.sample(range(0, 3000), 100)
+    arr = [x for x in range(0,30000)]
     
     # Algorithm list -> see readme.
     searching_funcs = [
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     q = queue.Queue()
 
     r = len(arr) - 1
-    x = 59
+    x = 5000
 
     # Send all function to a Thread.
     thread_manager(searching_funcs=searching_funcs, r=r, x=x)
