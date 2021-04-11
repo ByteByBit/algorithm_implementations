@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from threading import Thread
 import queue
-import time
 
 from bogo import bogo_sort
 from brick import brick_sort
