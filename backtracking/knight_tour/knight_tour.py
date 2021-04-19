@@ -62,13 +62,13 @@ def move(step_count: int, i: int, j: int):
         next_i = i + KNIGHT_MOVES[k][0]
         next_j = j + KNIGHT_MOVES[k][1]
 
-        if is_valid_move(next_i, next_j):
+        if is_valid_move(i=next_i, j=next_j):
 
             # Put move number into the board.
             board[next_i][next_j] = step_count
 
             # Validate move.
-            if move(step_count + 1, next_i, next_j):
+            if move(step_count=step_count + 1, i=next_i, j=next_j):
                 
                 return True
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     # Place knight at the starting point.
     board[0][0] = 1   
 
-    if move(2, 0, 0):
+    if move(step_count=2, i=0, j=0):
         
         # Print the board.
         for i in board:
