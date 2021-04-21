@@ -1,5 +1,4 @@
-# Maze size.
-N = 4
+
 
 
 def is_valid_move(x: int, y: int):
@@ -111,7 +110,10 @@ if __name__ == '__main__':
         [0, 1, 1, 1]
         ]
 
-    # Create a solutin matrix.
+    # Maze size.
+    N = len(maze)
+
+    # Create a solution matrix.
     solution = [[0 for x in range(N)] for x in range(N)]
 
     if solve(x=0, y=0):
