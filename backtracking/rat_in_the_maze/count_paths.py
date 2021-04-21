@@ -1,4 +1,3 @@
-
 def is_valid_move(x: int, y: int):
     ''' 
     Function to validate move in the maze.
