@@ -75,8 +75,6 @@ def place_queens(board, col):
     return False
 
 
-
-
 if __name__ == '__main__':
 
     # Board size.
