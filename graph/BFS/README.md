@@ -15,4 +15,5 @@
     <li>Start over with the stranger node</li>
     <li>Continue until we are out of nodes</li>
 </ul>
+<h3>The difference between Breadth First Search and Depth First Search is: BFS first goes horizontal, then vertical, while DFS the opposite way.</h3>
     
