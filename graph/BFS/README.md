@@ -11,6 +11,8 @@
         </ol>
     <li>Dequeue the root/ start node from the queue and mark it visited</li>
     <li>Iterate over it's adjacent nodes, if any of them is not visited, we have our next participant</li>
+    <li>Mark it visited</li>
+    <li>Start over with the stranger node</li>
     <li>Continue until we are out of nodes</li>
 </ul>
     
