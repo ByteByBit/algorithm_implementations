@@ -1,7 +1,7 @@
 # Bredth First Search Algorithm
 
-<h2>Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph.</h2>
-<h2>Space complexity: O(V), where V is the number of vertices in the graph.</h2>
+<h2>Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph.<br>
+Space complexity: O(V), where V is the number of vertices in the graph.</h2>
 <h2>Implementation:</h2>
 <ul>
     <li>Store the graph in a dictionary</li>
