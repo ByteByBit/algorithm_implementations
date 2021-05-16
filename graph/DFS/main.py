@@ -1,51 +1,33 @@
-from collections import defaultdict
+import logging
 
 
 class Graph:
 
-    def __init__(self):
+    def __init__(self, graph: dict):
+        
+        self.graph = graph
+        self.visited = []
 
-        self.graph = defaultdict(list)
-        self.visited = set()
+    def search(self, start_node: int):
 
-    def add_edge(self, u: int, v: int) -> None:
+        if start_node not in self.visited: # Is it a stranger node?
 
-        self.graph[u].append(v)
+            self.visited.append(start_node) # Not anymore.
 
-    
-class DFS(Graph):
+            for next_node in self.graph[start_node]: # Iterate over it's adjacents.
 
-    '''
-    A simple Depth First Search algorithm.
-    '''
-    
-    def __init__(self):
-
-        super().__init__()
-
-    def util(self, v):
-
-        self.visited.add(v)
-        print(v)
-
-        for i in self.graph[v]:
-
-            if i not in self.visited:
-                self.util(i)
-
-    def search(self, v):
-
-        self.util(v)
+                self.search(next_node) # Recurse, until we have nodes.
 
 
 if __name__ == '__main__':
 
-    dfs = DFS()
-    dfs.add_edge(0, 1)
-    dfs.add_edge(0, 2)
-    dfs.add_edge(1, 2)
-    dfs.add_edge(2, 0)
-    dfs.add_edge(2, 3)
-    dfs.add_edge(3, 3)
+    graph = {0: [1, 2], 1: [3, 4], 2: [6], 3: [5], 4: [], 5: [], 6: []}
 
-    dfs.search(2)
+    g = Graph(graph=graph)
+
+    g.search(start_node=0) # Fun starts here.
+
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
+
+    logging.info(f'Result: {g.visited}')
