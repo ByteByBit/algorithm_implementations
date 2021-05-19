@@ -1,20 +1,16 @@
-
-
 def floyd_warshall(graph: list):
 
     d = list(map(lambda i: list(map(lambda j: j, i)), graph))
     num_vertices = len(graph)
 
-    for i in range(num_vertices):
+    for k in range(num_vertices):
 
-        for j in range(num_vertices):
+        for i in range(num_vertices):
 
-            for k in range(num_vertices):
+            for j in range(num_vertices):
 
-                d[j][k] = min(d[j][k],
-                d[j][i] + d[i][k])
+                d[i][j] = min(d[i][j], d[i][k] + d[k][j])
 
-    
     return d
 
 
