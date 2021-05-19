@@ -30,6 +30,7 @@ class Graph:
         for m, n, w in self.g:
 
             if distances[m] != inf and distances[m] + w < distances[n]:
+                print('Negative cycle...')
                 return None
 
 
@@ -39,7 +40,7 @@ class Graph:
 if __name__ == '__main__':
 
     g = Graph(5, 0)
-    
+
     g.add_edge(0, 1, -1) 
     g.add_edge(0, 2, 4) 
     g.add_edge(1, 2, 3) 
