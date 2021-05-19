@@ -15,34 +15,8 @@ def floyd_warshall(graph: list):
 
 
 if __name__ == '__main__':
-    '''
-    Visual representation of the given graph.
 
-             22
-       (0)------->(5)
-        |         /|\
-        |          |
-      5 |          | 7
-        |          | 
-       \|/         |
-       (1)        (4)         
-        |         /|\
-        |          |
-      3 |          | 1
-        |          | 
-       \|/         |
-       (2)------->(3)
-             4       
-             
-    Expected result:
-    Shortest distance matrix
-    (0) -> [0, 5, 8, 12, 13, 20]
-    (1) -> [INF, 0, 3, 7, 8, 15]
-    (2) -> [INF, INF, 0, 4, 5, 12]
-    (3) -> [INF, INF, INF, 0, 1, 8]
-    (4) -> [INF, INF, INF, INF, 0, 7]
-    (5) -> [INF, INF, INF, INF, INF, 0]
-    '''
+
     INF = 9999
     graph = [
         [0, 5, INF, INF, INF, 22],
